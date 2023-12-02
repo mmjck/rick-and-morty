@@ -29,7 +29,22 @@ final class EpisodeListView: UIView {
     }()
     
     
-    private let collectionView = UICollectionView = {
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection  = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isHidden = true
+        collectionView.alpha = 0
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(CharacterEpisodeCollectionViewCell.self,
+                                forCellWithReuseIdentifier: CharacterEpisodeCollectionViewCell.identifer)
+        collectionView.register(FooterLoadingCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: FooterLoadingCollectionReusableView.identifier)
+        
+        return collectionView
+        return collectionView
     }()
 }
