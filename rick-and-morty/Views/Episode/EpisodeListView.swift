@@ -39,12 +39,53 @@ final class EpisodeListView: UIView {
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CharacterEpisodeCollectionViewCell.self,
-                                forCellWithReuseIdentifier: CharacterEpisodeCollectionViewCell.identifer)
+                                forCellWithReuseIdentifier: CharacterEpisodeCollectionViewCell.identifier)
         collectionView.register(FooterLoadingCollectionReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                                 withReuseIdentifier: FooterLoadingCollectionReusableView.identifier)
         
         return collectionView
-        return collectionView
+        
     }()
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(collectionView)
+        
+        spinner.startAnimating()
+        viewModel.delegate = self
+        viewModel.fetchCharacters()
+        setUpCollectionView()
+        
+    }
+    
+    
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            spinner.widthAnchor.constraint(equalToConstant: 100),
+            spinner.heightAnchor.constraint(equalToConstant: 100),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUpCollectionView() {
+        collectionView.dataSource = viewModel
+        collectionView.delegate = viewModel
+    }
+}
+
+extension EpisodeListView : EpisodeListViewViewModelDelegate {
+    
 }
