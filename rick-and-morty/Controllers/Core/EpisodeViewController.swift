@@ -11,7 +11,7 @@ import UIKit
 
 
 class EpisodeViewController: UIViewController {
-//    private let episodeListView =  EpisodeListView()
+    private let episodeListView =  EpisodeListView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +33,27 @@ class EpisodeViewController: UIViewController {
         //        vc.navigationItem.largeTitleDisplayMode = .never
         //        navigationController?.pushViewController(vc, animated: true)
     }
-
-
+    
+    
     private func setupView(){
-        
+        episodeListView.delegate = self
+        self.view.addSubview(episodeListView)
+        NSLayoutConstraint.activate([
+            episodeListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            episodeListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            episodeListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            episodeListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
+    
+}
+
+extension EpisodeViewController: EpisodeListViewDelegate {
+    func removeEpisodeListView(_ characterListView: EpisodeListView, didSelectEpisode episode: Episode) {
+        //        let detailVC = RMEpisodeDetailViewController(url: URL(string: episode.url))
+        //        detailVC.navigationItem.largeTitleDisplayMode = .never
+        //        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
     
 }

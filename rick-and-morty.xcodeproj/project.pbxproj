@@ -36,6 +36,7 @@
 		0DD42C912B216E8300333DC7 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C902B216E8300333DC7 /* Request.swift */; };
 		0DD42C932B2288C500333DC7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C922B2288C500333DC7 /* Service.swift */; };
 		0DD42C962B228FA100333DC7 /* APICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C952B228FA100333DC7 /* APICacheManager.swift */; };
+		0DD42C982B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C972B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		0DD42C902B216E8300333DC7 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		0DD42C922B2288C500333DC7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		0DD42C952B228FA100333DC7 /* APICacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICacheManager.swift; sourceTree = "<group>"; };
+		0DD42C972B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEpisodeCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				0DD42C822B1BF32500333DC7 /* EpisodeListViewViewModel.swift */,
 				0DD42C8C2B1D072D00333DC7 /* CharacterListViewViewModel.swift */,
 				0DD42C8E2B1D151300333DC7 /* CharacterCollectionViewCellViewModel.swift */,
+				0DD42C972B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				0DD42C8F2B1D151300333DC7 /* CharacterCollectionViewCellViewModel.swift in Sources */,
 				0DD42C472B198E2200333DC7 /* SceneDelegate.swift in Sources */,
 				0DD42C632B19919B00333DC7 /* HomeTabBarUITabBarController.swift in Sources */,
+				0DD42C982B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift in Sources */,
 				0DD42C7E2B1BBFC700333DC7 /* EpisodeViewController.swift in Sources */,
 				0DD42C962B228FA100333DC7 /* APICacheManager.swift in Sources */,
 				0DD42C8D2B1D072D00333DC7 /* CharacterListViewViewModel.swift in Sources */,
