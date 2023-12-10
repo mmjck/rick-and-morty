@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol EpisodeDataRender {
-    var name: String { get }
-    var air_date: String { get }
-    var episode: String { get }
-}
+//protocol EpisodeDataRender {
+//    var name: String { get }
+//    var air_date: String { get }
+//    var episode: String { get }
+//}
 
 struct Episode: Codable, EpisodeDataRender {
     let id: Int

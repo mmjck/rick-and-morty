@@ -26,7 +26,7 @@ final class CharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
     private var episode: Episode? {
         didSet {
             guard let model = episode else { return }
-            dataBlock(model)
+            dataBlock?(model)
         }
     }
     
@@ -70,16 +70,17 @@ final class CharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
             
             
         }
+    }
+    
+    
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.episodeDataUrl?.absoluteString ?? "")
+    }
+    
+    
+    static func == (lhs: CharacterEpisodeCollectionViewCellViewModel, rhs: CharacterEpisodeCollectionViewCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
         
-        
-        
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(self.episodeDataUrl?.absoluteString ?? "")
-        }
-        
-        
-        static func == (lhs: CharacterEpisodeCollectionViewCellViewModel, rhs: CharacterEpisodeCollectionViewCellViewModel) -> Bool {
-            return lhs.hashValue == rhs.hashValue
-        }
     }
 }
