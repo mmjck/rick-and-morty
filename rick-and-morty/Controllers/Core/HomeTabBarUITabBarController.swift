@@ -20,7 +20,7 @@ class HomeTabBarUITabBarController: UITabBarController {
     private func setupTabs(){
         let charactersVC = ViewController()
         let locationsVC = ViewController()
-        let episodesVC = ViewController()
+        let episodesVC = EpisodesViewController()
         let settingVC = ViewController()
         
         charactersVC.navigationItem.largeTitleDisplayMode = .always

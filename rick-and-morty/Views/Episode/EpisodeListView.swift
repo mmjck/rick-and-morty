@@ -53,7 +53,7 @@ final class EpisodeListView: UIView {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(collectionView)
-        
+        self.backgroundColor = .white
         spinner.startAnimating()
         viewModel.delegate = self
         viewModel.fetchEpisodes()

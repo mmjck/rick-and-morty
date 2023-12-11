@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class EpisodeViewController: UIViewController {
+class EpisodesViewController: UIViewController {
     private let episodeListView =  EpisodeListView()
     
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ class EpisodeViewController: UIViewController {
     
 }
 
-extension EpisodeViewController: EpisodeListViewDelegate {
+extension EpisodesViewController: EpisodeListViewDelegate {
     func removeEpisodeListView(_ characterListView: EpisodeListView, didSelectEpisode episode: Episode) {
         //        let detailVC = RMEpisodeDetailViewController(url: URL(string: episode.url))
         //        detailVC.navigationItem.largeTitleDisplayMode = .never
