@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import UIKit
 
 
@@ -19,8 +18,8 @@ class EpisodesViewController: UIViewController {
         self.view.backgroundColor = .black
         title = "Episodes"
         
-        setupView()
-        addSearchButton()
+        self.setupView()
+        self.addSearchButton()
     }
     
     

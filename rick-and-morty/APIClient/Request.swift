@@ -50,7 +50,7 @@ final class Request {
     }
     
     
-    public let httpMethod = "Method"
+    public let httpMethod = "GET"
     
     init(endPoint: Endpoint, pathComponents: [String] = [], queryParameters: [URLQueryItem] = []) {
         self.endPoint = endPoint

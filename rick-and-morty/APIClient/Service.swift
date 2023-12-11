@@ -13,7 +13,7 @@ final class Service {
     
     
     private let cacheManager = APICacheManager()
-
+    
     private init() {
         
     }
@@ -22,7 +22,7 @@ final class Service {
     enum ServiceError: Error {
         case failedToCreateRequest
         case failedToGetData
-
+        
     }
     
     
@@ -32,23 +32,25 @@ final class Service {
         completion: @escaping (Result<T, Error>) -> Void
     ){
         
-        if let cachedData = cacheManager.cachedResponse(for: request.endPoint, url: request.url)
-        {
-            do {
-                let result = try JSONDecoder().decode(type.self, from: cachedData)
-                completion(.success(result))
-            }catch {
-                completion(.failure(error))
-                
-            }
-            
-            return
-        }
-        
+        //        if let cachedData = cacheManager.cachedResponse(for: request.endPoint, url: request.url)
+        //        {
+        //            do {
+        //                let result = try JSONDecoder().decode(type.self, from: cachedData)
+        //                completion(.success(result))
+        //            }catch {
+        //                completion(.failure(error))
+        //
+        //            }
+        //
+        //            return
+        //        }
+        //
         guard let urlRequest = self.request(from: request) else {
             completion(.failure(ServiceError.failedToCreateRequest))
             return
         }
+        
+
         
         let task = URLSession.shared.dataTask(with: urlRequest) {
             [weak self] data, _, error in
@@ -60,12 +62,15 @@ final class Service {
             
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
+
                 completion(.success(result))
             }catch {
                 completion(.failure(error))
-
+                
             }
         }
+        
+        task.resume()
     }
     
     
