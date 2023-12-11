@@ -29,9 +29,9 @@ final class CharacterCollectionViewCellViewModel {
     }
     
     
-    static func == (lhs: CharacterCollectionViewCellViewModel, rhs: CharacterCollectionViewCellViewModel) -> Bool {
-        return lhs.name.hashValue == rhs.hashValue
-    }
+//    static func == (lhs: CharacterCollectionViewCellViewModel, rhs: CharacterCollectionViewCellViewModel) -> Bool {
+//        return lhs.name.hashValue == rhs.hashValue
+//    }
     
     
     func hash(into hasher: inout Hasher){

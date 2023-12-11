@@ -104,6 +104,7 @@
 		0DD42C432B198E2200333DC7 /* rick-and-morty */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42C522B198E2300333DC7 /* Info.plist */,
 				0DD42C942B228F9300333DC7 /* Managers */,
 				0DD42C7A2B1BBECF00333DC7 /* Resources */,
 				0DD42C5C2B19906E00333DC7 /* Views */,
@@ -203,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				0DD42C4D2B198E2300333DC7 /* Assets.xcassets */,
-				0DD42C522B198E2300333DC7 /* Info.plist */,
 				0DD42C442B198E2200333DC7 /* AppDelegate.swift */,
 				0DD42C462B198E2200333DC7 /* SceneDelegate.swift */,
 				0DD42C7B2B1BBEE300333DC7 /* Extensions.swift */,

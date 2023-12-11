@@ -20,7 +20,7 @@ final class Request {
     private let queryParameters: [URLQueryItem]
     
     
-    private urlString: String {
+    private var urlString: String {
         var string = Constants.baseUrl
         string += "/"
         string += endPoint.rawValue
@@ -76,7 +76,7 @@ final class Request {
                 if let rmEndpoint = Endpoint(
                     rawValue: endpointString
                 ) {
-                    self.init(endpoint: Endpoint, pathComponents: pathComponents)
+                    self.init(endPoint: rmEndpoint, pathComponents: pathComponents)
                     return
                 }
             }
@@ -98,8 +98,8 @@ final class Request {
                     )
                 })
                 
-                if let endpoint = Endpoint(rawValue: endpointString) {
-                    self.init(endPoint: endPoint, queryParameters: queryItems)
+                if let rmEndpoint = Endpoint(rawValue: endpointString) {
+                    self.init(endPoint: rmEndpoint, queryParameters: queryItems)
                     return
                 }
             }

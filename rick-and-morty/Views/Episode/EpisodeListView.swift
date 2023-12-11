@@ -16,7 +16,7 @@ protocol EpisodeListViewDelegate: AnyObject {
 
 
 final class EpisodeListView: UIView {
-    public weak var delegate:EpisodeListViewDelegate?
+    public weak var delegate: EpisodeListViewDelegate?
     
     private let viewModel = EpisodeListViewViewModel()
     
@@ -56,7 +56,7 @@ final class EpisodeListView: UIView {
         
         spinner.startAnimating()
         viewModel.delegate = self
-        viewModel.fetchCharacters()
+        viewModel.fetchEpisodes()
         setUpCollectionView()
         
     }
@@ -87,5 +87,23 @@ final class EpisodeListView: UIView {
 }
 
 extension EpisodeListView : EpisodeListViewViewModelDelegate {
+    func didLoadInitialEpisodes() {
+        spinner.stopAnimating()
+        collectionView.isHidden = false
+        collectionView.reloadData()
+        UIView.animate(withDuration: 0.4) {
+            self.collectionView.alpha = 1
+        }
+    }
+    
+    func didLoadMoreEpisodes(with newIndexPaths: [IndexPath]) {
+        self.collectionView.insertItems(at: newIndexPaths)
+
+    }
+    
+    func didSelectEpisode(_ episode: Episode) {
+        delegate?.removeEpisodeListView(self, didSelectEpisode: episode)
+    }
+    
     
 }

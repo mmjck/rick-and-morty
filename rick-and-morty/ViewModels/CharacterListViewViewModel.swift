@@ -22,14 +22,14 @@ final class CharacterListViewViewModel {
     
     private var characters: [Character] = [] {
         didSet {
-            for character in characters {
-                let viewModel = CharacterCollectionViewCellViewModel(name: character.name, status: character.status, imageUrl: URL(string: character.image))
-                
-                if !cellViewModels.contains(viewModel) {
-                    cellViewModels.append(viewModel)
-                }
-                
-            }
+//            for character in characters {
+//                let viewModel = CharacterCollectionViewCellViewModel(name: character.name, status: character.status, imageUrl: URL(string: character.image))
+//                
+//                if !cellViewModels.contains(viewModel) {
+//                    cellViewModels.append(viewModel)
+//                }
+//                
+//            }
         }
     }
     
