@@ -15,8 +15,9 @@ class EpisodesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .black
+        
         title = "Episodes"
+        self.view.backgroundColor = .white
         
         self.setupView()
         self.addSearchButton()

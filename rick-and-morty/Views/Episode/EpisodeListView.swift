@@ -53,11 +53,12 @@ final class EpisodeListView: UIView {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(collectionView)
-        
+        self.addSubview(spinner)
         spinner.startAnimating()
         viewModel.delegate = self
         viewModel.fetchEpisodes()
         setUpCollectionView()
+        addConstraints()
         
     }
     
@@ -94,10 +95,11 @@ extension EpisodeListView : EpisodeListViewViewModelDelegate {
         UIView.animate(withDuration: 0.4) {
             self.collectionView.alpha = 1
         }
+        
     }
     
     func didLoadMoreEpisodes(with newIndexPaths: [IndexPath]) {
-//        self.collectionView.insertItems(at: newIndexPaths)
+        self.collectionView.insertItems(at: newIndexPaths)
 
     }
     

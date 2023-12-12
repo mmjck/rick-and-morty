@@ -38,10 +38,12 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .tertiarySystemBackground
+        // contentView.backgroundColor = .blue
         setUpLayer()
         
-        contentView.addSubViews(seasonLabel, nameLabel, airDateLabel)
+        contentView.addSubview(seasonLabel)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(airDateLabel)
         setUpConstraints()
         
     }

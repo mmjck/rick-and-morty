@@ -37,6 +37,11 @@
 		0DD42C932B2288C500333DC7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C922B2288C500333DC7 /* Service.swift */; };
 		0DD42C962B228FA100333DC7 /* APICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C952B228FA100333DC7 /* APICacheManager.swift */; };
 		0DD42C982B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C972B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift */; };
+		0DD42C9A2B2785AC00333DC7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C992B2785AC00333DC7 /* SettingsViewController.swift */; };
+		0DD42C9C2B2788BA00333DC7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C9B2B2788BA00333DC7 /* SettingsView.swift */; };
+		0DD42CA02B2788F700333DC7 /* SettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C9F2B2788F700333DC7 /* SettingsCellViewModel.swift */; };
+		0DD42CA22B27891200333DC7 /* SettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CA12B27891100333DC7 /* SettingsOption.swift */; };
+		0DD42CA42B27892000333DC7 /* SettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CA32B27892000333DC7 /* SettingsViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +77,11 @@
 		0DD42C922B2288C500333DC7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		0DD42C952B228FA100333DC7 /* APICacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICacheManager.swift; sourceTree = "<group>"; };
 		0DD42C972B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEpisodeCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		0DD42C992B2785AC00333DC7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0DD42C9B2B2788BA00333DC7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0DD42C9F2B2788F700333DC7 /* SettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellViewModel.swift; sourceTree = "<group>"; };
+		0DD42CA12B27891100333DC7 /* SettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOption.swift; sourceTree = "<group>"; };
+		0DD42CA32B27892000333DC7 /* SettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +157,7 @@
 		0DD42C5B2B19906900333DC7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42C9E2B2788ED00333DC7 /* Settings */,
 				0DD42C822B1BF32500333DC7 /* EpisodeListViewViewModel.swift */,
 				0DD42C8C2B1D072D00333DC7 /* CharacterListViewViewModel.swift */,
 				0DD42C8E2B1D151300333DC7 /* CharacterCollectionViewCellViewModel.swift */,
@@ -158,6 +169,7 @@
 		0DD42C5C2B19906E00333DC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42C9D2B2788BF00333DC7 /* SwiftUI */,
 				0DD42C872B1BF85500333DC7 /* CharacterDetails */,
 				0DD42C842B1BF5B400333DC7 /* Character */,
 				0DD42C7F2B1BCA9000333DC7 /* Episode */,
@@ -196,6 +208,7 @@
 			children = (
 				0DD42C622B19919B00333DC7 /* HomeTabBarUITabBarController.swift */,
 				0DD42C7D2B1BBFC700333DC7 /* EpisodeViewController.swift */,
+				0DD42C992B2785AC00333DC7 /* SettingsViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -241,6 +254,24 @@
 				0DD42C952B228FA100333DC7 /* APICacheManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		0DD42C9D2B2788BF00333DC7 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				0DD42C9B2B2788BA00333DC7 /* SettingsView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		0DD42C9E2B2788ED00333DC7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0DD42C9F2B2788F700333DC7 /* SettingsCellViewModel.swift */,
+				0DD42CA12B27891100333DC7 /* SettingsOption.swift */,
+				0DD42CA32B27892000333DC7 /* SettingsViewViewModel.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,11 +348,13 @@
 				0DD42C792B1BBDAD00333DC7 /* Info.swift in Sources */,
 				0DD42C772B1BBD6E00333DC7 /* GetLocationResponse.swift in Sources */,
 				0DD42C8B2B1D049E00333DC7 /* FooterLoadingCollectionReusableView.swift in Sources */,
+				0DD42CA02B2788F700333DC7 /* SettingsCellViewModel.swift in Sources */,
 				0DD42C932B2288C500333DC7 /* Service.swift in Sources */,
 				0DD42C6F2B1BAE9F00333DC7 /* Location.swift in Sources */,
 				0DD42C692B1BACEC00333DC7 /* CharacterStatus.swift in Sources */,
 				0DD42C452B198E2200333DC7 /* AppDelegate.swift in Sources */,
 				0DD42C862B1BF5C100333DC7 /* CharacterCollectionViewCell.swift in Sources */,
+				0DD42CA22B27891200333DC7 /* SettingsOption.swift in Sources */,
 				0DD42C672B1BAA2400333DC7 /* Character.swift in Sources */,
 				0DD42C892B1BF86200333DC7 /* CharacterEpisodeCollectionViewCell.swift in Sources */,
 				0DD42C5E2B19908D00333DC7 /* Endpoints.swift in Sources */,
@@ -335,11 +368,14 @@
 				0DD42C812B1BCA9F00333DC7 /* EpisodeListView.swift in Sources */,
 				0DD42C6B2B1BADF900333DC7 /* Episode.swift in Sources */,
 				0DD42C752B1BBCE500333DC7 /* GetAllEpisodesResponse.swift in Sources */,
+				0DD42C9A2B2785AC00333DC7 /* SettingsViewController.swift in Sources */,
 				0DD42C6D2B1BAE6900333DC7 /* CharacterGender.swift in Sources */,
 				0DD42C652B1BA9D700333DC7 /* GetAllCharactersResponse.swift in Sources */,
 				0DD42C7C2B1BBEE300333DC7 /* Extensions.swift in Sources */,
 				0DD42C832B1BF32500333DC7 /* EpisodeListViewViewModel.swift in Sources */,
 				0DD42C712B1BAF9800333DC7 /* Origin.swift in Sources */,
+				0DD42C9C2B2788BA00333DC7 /* SettingsView.swift in Sources */,
+				0DD42CA42B27892000333DC7 /* SettingsViewViewModel.swift in Sources */,
 				0DD42C732B1BAFBC00333DC7 /* SingleLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
