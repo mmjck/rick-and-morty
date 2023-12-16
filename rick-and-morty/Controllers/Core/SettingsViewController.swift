@@ -13,14 +13,16 @@ import UIKit
 final class SettingsViewController: UIViewController{
     
     private var settingsSwiftUIController: UIHostingController<SettingsView>?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
     }
     
     private func setupUI(){
-        self.view.backgroundColor = .white
+        print("called")
+        view.backgroundColor = .white
         self.title = "Settings"
         
         self.addSwiftUIController()
@@ -35,7 +37,7 @@ final class SettingsViewController: UIViewController{
         }))))
         
         
-         self.addChild(settingsSwiftUIController)
+        self.addChild(settingsSwiftUIController)
         settingsSwiftUIController.didMove(toParent: self)
         
         
@@ -49,7 +51,7 @@ final class SettingsViewController: UIViewController{
             settingsSwiftUIController.view.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             settingsSwiftUIController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-
+        
         self.settingsSwiftUIController = settingsSwiftUIController
         
     }

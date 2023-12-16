@@ -42,6 +42,11 @@
 		0DD42CA02B2788F700333DC7 /* SettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42C9F2B2788F700333DC7 /* SettingsCellViewModel.swift */; };
 		0DD42CA22B27891200333DC7 /* SettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CA12B27891100333DC7 /* SettingsOption.swift */; };
 		0DD42CA42B27892000333DC7 /* SettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CA32B27892000333DC7 /* SettingsViewViewModel.swift */; };
+		0DD42CA62B2958D300333DC7 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CA52B2958D200333DC7 /* LocationViewController.swift */; };
+		0DD42CA92B29E56B00333DC7 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CA82B29E56B00333DC7 /* LocationView.swift */; };
+		0DD42CAC2B2DD3B000333DC7 /* LocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CAB2B2DD3B000333DC7 /* LocationViewViewModel.swift */; };
+		0DD42CAE2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CAD2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift */; };
+		0DD42CB02B2DD8A900333DC7 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CAF2B2DD8A900333DC7 /* LocationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +87,11 @@
 		0DD42C9F2B2788F700333DC7 /* SettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellViewModel.swift; sourceTree = "<group>"; };
 		0DD42CA12B27891100333DC7 /* SettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOption.swift; sourceTree = "<group>"; };
 		0DD42CA32B27892000333DC7 /* SettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModel.swift; sourceTree = "<group>"; };
+		0DD42CA52B2958D200333DC7 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		0DD42CA82B29E56B00333DC7 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		0DD42CAB2B2DD3B000333DC7 /* LocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewViewModel.swift; sourceTree = "<group>"; };
+		0DD42CAD2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		0DD42CAF2B2DD8A900333DC7 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +167,7 @@
 		0DD42C5B2B19906900333DC7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42CAA2B2DD39500333DC7 /* Location */,
 				0DD42C9E2B2788ED00333DC7 /* Settings */,
 				0DD42C822B1BF32500333DC7 /* EpisodeListViewViewModel.swift */,
 				0DD42C8C2B1D072D00333DC7 /* CharacterListViewViewModel.swift */,
@@ -169,6 +180,7 @@
 		0DD42C5C2B19906E00333DC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42CA72B29E56200333DC7 /* Location */,
 				0DD42C9D2B2788BF00333DC7 /* SwiftUI */,
 				0DD42C872B1BF85500333DC7 /* CharacterDetails */,
 				0DD42C842B1BF5B400333DC7 /* Character */,
@@ -209,6 +221,7 @@
 				0DD42C622B19919B00333DC7 /* HomeTabBarUITabBarController.swift */,
 				0DD42C7D2B1BBFC700333DC7 /* EpisodeViewController.swift */,
 				0DD42C992B2785AC00333DC7 /* SettingsViewController.swift */,
+				0DD42CA52B2958D200333DC7 /* LocationViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -272,6 +285,24 @@
 				0DD42CA32B27892000333DC7 /* SettingsViewViewModel.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		0DD42CA72B29E56200333DC7 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				0DD42CA82B29E56B00333DC7 /* LocationView.swift */,
+				0DD42CAF2B2DD8A900333DC7 /* LocationTableViewCell.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		0DD42CAA2B2DD39500333DC7 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				0DD42CAB2B2DD3B000333DC7 /* LocationViewViewModel.swift */,
+				0DD42CAD2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,7 +374,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DD42CA62B2958D300333DC7 /* LocationViewController.swift in Sources */,
 				0DD42C492B198E2200333DC7 /* ViewController.swift in Sources */,
+				0DD42CAC2B2DD3B000333DC7 /* LocationViewViewModel.swift in Sources */,
 				0DD42C912B216E8300333DC7 /* Request.swift in Sources */,
 				0DD42C792B1BBDAD00333DC7 /* Info.swift in Sources */,
 				0DD42C772B1BBD6E00333DC7 /* GetLocationResponse.swift in Sources */,
@@ -359,11 +392,14 @@
 				0DD42C892B1BF86200333DC7 /* CharacterEpisodeCollectionViewCell.swift in Sources */,
 				0DD42C5E2B19908D00333DC7 /* Endpoints.swift in Sources */,
 				0DD42C8F2B1D151300333DC7 /* CharacterCollectionViewCellViewModel.swift in Sources */,
+				0DD42CB02B2DD8A900333DC7 /* LocationTableViewCell.swift in Sources */,
 				0DD42C472B198E2200333DC7 /* SceneDelegate.swift in Sources */,
+				0DD42CAE2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift in Sources */,
 				0DD42C632B19919B00333DC7 /* HomeTabBarUITabBarController.swift in Sources */,
 				0DD42C982B22B16100333DC7 /* CharacterEpisodeCollectionViewCellViewModel.swift in Sources */,
 				0DD42C7E2B1BBFC700333DC7 /* EpisodeViewController.swift in Sources */,
 				0DD42C962B228FA100333DC7 /* APICacheManager.swift in Sources */,
+				0DD42CA92B29E56B00333DC7 /* LocationView.swift in Sources */,
 				0DD42C8D2B1D072D00333DC7 /* CharacterListViewViewModel.swift in Sources */,
 				0DD42C812B1BCA9F00333DC7 /* EpisodeListView.swift in Sources */,
 				0DD42C6B2B1BADF900333DC7 /* Episode.swift in Sources */,
