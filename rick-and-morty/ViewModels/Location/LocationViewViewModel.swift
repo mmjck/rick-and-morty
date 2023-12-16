@@ -8,14 +8,18 @@
 import Foundation
 
 
-protocol LocatinoViewViewModelDelegate: AnyObject {
+protocol LocationViewViewModelDelegate: AnyObject {
     func didFetchInitialLocations()
 }
 
 
 final class LocationViewViewModel {
-    weak var delegate: LocatinoViewViewModelDelegate
-    private(set) var cellViewModels = [LocationTableViewCellViewModel] = []
+    weak var delegate: LocationViewViewModelDelegate?
+    
+    public private(set) var cellViewModels: [LocationTableViewCellViewModel] = []
+    
+    public var isLoadingMoreLocations: Bool = false
+    private var didFinishPagination: (() -> Void)?
     
     
     private var apiInfo: Info?
@@ -46,9 +50,7 @@ final class LocationViewViewModel {
     
     
     
-    public var isLoadingMoreLocations: Bool = false
     
-    private var didFinishPagination: (() -> Void)?
     
     
     init(){}
@@ -68,7 +70,7 @@ final class LocationViewViewModel {
 
 
 
-extension LocationViewViewModel: LocatinoViewViewModelDelegate {
+extension LocationViewViewModel: LocationViewViewModelDelegate {
     func didFetchInitialLocations() {
         Service.shared.execute(.listLocationsRequest, expecting: GetAllLocationsResponse.self) {
             [weak self] result in
@@ -78,7 +80,7 @@ extension LocationViewViewModel: LocatinoViewViewModelDelegate {
                 self?.locations = response.results
                 
                 DispatchQueue.main.async {
-                    self?.delegate.didFetchInitialLocations()
+                    self?.delegate?.didFetchInitialLocations()
                 }
             case .failure(let error):
                 print(error)

@@ -63,18 +63,7 @@ final class LocationView: UIView
         self.addConstraints()
     }
     
-    //    init(delegate: LocationViewDelegate? = nil, viewModel: LocationViewViewModel? = nil) {
-    //        self.delegate = delegate
-    //        self.viewModel = viewModel
-    //
-    //
-    //        spinner.startAnimating()
-    //
-    //        self.configureTable()
-    //        self.addConstraints()
-    //    }
-    
-    required init?(coder: NSCoder) {
+  required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

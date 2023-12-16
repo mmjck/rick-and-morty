@@ -36,7 +36,7 @@ final class LocationTableViewCellViewModel: Hashable, Equatable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
-        hasher.combine(location)
+        hasher.combine(location.id)
         hasher.combine(dimension)
         hasher.combine(type)
     }
