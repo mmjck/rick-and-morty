@@ -47,6 +47,7 @@
 		0DD42CAC2B2DD3B000333DC7 /* LocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CAB2B2DD3B000333DC7 /* LocationViewViewModel.swift */; };
 		0DD42CAE2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CAD2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift */; };
 		0DD42CB02B2DD8A900333DC7 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CAF2B2DD8A900333DC7 /* LocationTableViewCell.swift */; };
+		0DD42CB32B2F110400333DC7 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CB22B2F110400333DC7 /* functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,7 +77,7 @@
 		0DD42C852B1BF5C100333DC7 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		0DD42C882B1BF86200333DC7 /* CharacterEpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
 		0DD42C8A2B1D049E00333DC7 /* FooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
-		0DD42C8C2B1D072D00333DC7 /* CharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewViewModel.swift; sourceTree = "<group>"; };
+		0DD42C8C2B1D072D00333DC7 /* CharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0DD42C8E2B1D151300333DC7 /* CharacterCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		0DD42C902B216E8300333DC7 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		0DD42C922B2288C500333DC7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -92,6 +93,7 @@
 		0DD42CAB2B2DD3B000333DC7 /* LocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewViewModel.swift; sourceTree = "<group>"; };
 		0DD42CAD2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		0DD42CAF2B2DD8A900333DC7 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		0DD42CB22B2F110400333DC7 /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		0DD42C432B198E2200333DC7 /* rick-and-morty */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42CB12B2F10F600333DC7 /* Commns */,
 				0DD42C522B198E2300333DC7 /* Info.plist */,
 				0DD42C942B228F9300333DC7 /* Managers */,
 				0DD42C7A2B1BBECF00333DC7 /* Resources */,
@@ -305,6 +308,14 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		0DD42CB12B2F10F600333DC7 /* Commns */ = {
+			isa = PBXGroup;
+			children = (
+				0DD42CB22B2F110400333DC7 /* functions.swift */,
+			);
+			path = Commns;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -385,6 +396,7 @@
 				0DD42C932B2288C500333DC7 /* Service.swift in Sources */,
 				0DD42C6F2B1BAE9F00333DC7 /* Location.swift in Sources */,
 				0DD42C692B1BACEC00333DC7 /* CharacterStatus.swift in Sources */,
+				0DD42CB32B2F110400333DC7 /* functions.swift in Sources */,
 				0DD42C452B198E2200333DC7 /* AppDelegate.swift in Sources */,
 				0DD42C862B1BF5C100333DC7 /* CharacterCollectionViewCell.swift in Sources */,
 				0DD42CA22B27891200333DC7 /* SettingsOption.swift in Sources */,

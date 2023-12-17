@@ -51,39 +51,49 @@ final class EpisodeListView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(collectionView)
-        self.addSubview(spinner)
-        spinner.startAnimating()
-        viewModel.delegate = self
-        viewModel.fetchEpisodes()
-        setUpCollectionView()
-        addConstraints()
         
-    }
-    
-    
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 100),
-            spinner.heightAnchor.constraint(equalToConstant: 100),
-            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
-
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
+        spinner.startAnimating()
+        self.configView()
+        self.viewModel.fetchEpisodes()
+        self.setUpCollectionView()
+        self.setHierarchy()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+}
+
+extension EpisodeListView {
+    private func configView(){
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(collectionView)
+        self.addSubview(spinner)
+        
+        
+        viewModel.delegate = self
+    }
+    
     private func setUpCollectionView() {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
+    }
+    
+    private func setHierarchy() {
+        NSLayoutConstraint.activate([
+            spinner.widthAnchor.constraint(equalToConstant: 100),
+            spinner.heightAnchor.constraint(equalToConstant: 100),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
     }
 }
 
@@ -100,7 +110,7 @@ extension EpisodeListView : EpisodeListViewViewModelDelegate {
     
     func didLoadMoreEpisodes(with newIndexPaths: [IndexPath]) {
         self.collectionView.insertItems(at: newIndexPaths)
-
+        
     }
     
     func didSelectEpisode(_ episode: Episode) {

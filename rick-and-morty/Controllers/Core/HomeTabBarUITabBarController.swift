@@ -8,10 +8,10 @@
 import UIKit
 
 class HomeTabBarUITabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setupTabs()
         
     }
@@ -29,28 +29,26 @@ class HomeTabBarUITabBarController: UITabBarController {
         settingVC.navigationItem.largeTitleDisplayMode = .always
         
         
-        let nav1 = UINavigationController(rootViewController: charactersVC)
-        let nav2 = UINavigationController(rootViewController: locationsVC)
-        let nav3 = UINavigationController(rootViewController: episodesVC)
-        let nav4 = UINavigationController(rootViewController: settingVC)
-
+        let charactersNav = UINavigationController(rootViewController: charactersVC)
+        let locationsNav = UINavigationController(rootViewController: locationsVC)
+        let episodesNav = UINavigationController(rootViewController: episodesVC)
+        let settingNav = UINavigationController(rootViewController: settingVC)
         
         
-        nav1.tabBarItem = UITabBarItem(title: "Characters", image: UIImage(systemName: "person"), tag: 1)
-        
-        nav2.tabBarItem = UITabBarItem(title: "Locations", image: UIImage(systemName: "globe"), tag: 2)
-        
-        nav3.tabBarItem = UITabBarItem(title: "Episodes", image: UIImage(systemName: "tv"), tag: 3)
-        
-        nav4.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 4)
+        charactersNav.tabBarItem = UITabBarItem(title: "Characters", image: UIImage(systemName: "person"), tag: 1)
+        locationsNav.tabBarItem = UITabBarItem(title: "Locations", image: UIImage(systemName: "globe"), tag: 2)
+        episodesNav.tabBarItem = UITabBarItem(title: "Episodes", image: UIImage(systemName: "tv"), tag: 3)
+        settingNav.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 4)
         
         
         
-        for nav in [nav1, nav2, nav3, nav4] {
+        for nav in [charactersNav, locationsNav, episodesNav, settingNav] {
             nav.navigationBar.prefersLargeTitles = true
         }
         
-        setViewControllers([nav1, nav2, nav3, nav4], animated: true)
+        setViewControllers([charactersNav, locationsNav, episodesNav, settingNav],
+                           animated: true
+        )
     }
-
+    
 }

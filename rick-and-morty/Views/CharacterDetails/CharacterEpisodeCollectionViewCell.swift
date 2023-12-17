@@ -38,13 +38,9 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // contentView.backgroundColor = .blue
-        setUpLayer()
         
-        contentView.addSubview(seasonLabel)
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(airDateLabel)
-        setUpConstraints()
+        configureView()
+        setHierarchy()
         
     }
     
@@ -52,13 +48,44 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setUpLayer(){
+    
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        for label in [seasonLabel, nameLabel, airDateLabel] {
+            label.text = nil
+        }
+    }
+    
+    
+    public func configure(with viewModel: CharacterEpisodeCollectionViewCellViewModel) {
+        viewModel.registerForData {
+            [weak self] data in
+            self?.nameLabel.text = data.name
+            self?.seasonLabel.text = "Episode "+data.episode
+            self?.airDateLabel.text = "Aired on "+data.air_date
+        }
+        
+        viewModel.fetchEpisode()
+        contentView.layer.borderColor = viewModel.borderColor.cgColor
+    }
+    
+}
+
+
+extension CharacterEpisodeCollectionViewCell {
+    public func configureView(){
         contentView.layer.cornerRadius = 8
         contentView.layer.borderWidth = 2
         
+        
+        contentView.addSubview(seasonLabel)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(airDateLabel)
+        
     }
     
-    public func setUpConstraints() {
+    public func setHierarchy() {
         NSLayoutConstraint.activate([
             seasonLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             seasonLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
@@ -76,26 +103,6 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
             airDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
         ])
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        seasonLabel.text = nil
-        nameLabel.text = nil
-        airDateLabel.text = nil
-    }
-    
-    
-    public func configure(with viewModel: CharacterEpisodeCollectionViewCellViewModel) {
-        viewModel.registerForData {
-            [weak self] data in
-            self?.nameLabel.text = data.name
-            self?.seasonLabel.text = "Episode "+data.episode
-            self?.airDateLabel.text = "Aired on "+data.air_date
-        }
-        
-        viewModel.fetchEpisode()
-        contentView.layer.borderColor = viewModel.borderColor.cgColor
-    }}
+}
 
 

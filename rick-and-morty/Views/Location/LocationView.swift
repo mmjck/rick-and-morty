@@ -60,10 +60,10 @@ final class LocationView: UIView
         spinner.startAnimating()
         
         self.configureTable()
-        self.addConstraints()
+        self.setHierarchy()
     }
     
-  required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -83,7 +83,7 @@ extension LocationView {
         tableView.dataSource = self
     }
     
-    private func addConstraints() {
+    private func setHierarchy() {
         NSLayoutConstraint.activate([
             spinner.heightAnchor.constraint(equalToConstant: 100),
             spinner.widthAnchor.constraint(equalToConstant: 100),

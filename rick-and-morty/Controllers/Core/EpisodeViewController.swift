@@ -15,12 +15,10 @@ class EpisodesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        title = "Episodes"
-        self.view.backgroundColor = .white
-        
-        self.setupView()
+        self.setupUI()
+        self.setupHierarchy()
         self.addSearchButton()
+        self.setupHierarchy()
     }
     
     
@@ -35,9 +33,23 @@ class EpisodesViewController: UIViewController {
     }
     
     
-    private func setupView(){
+
+    
+}
+
+extension EpisodesViewController {
+    private func configureView(){
         episodeListView.delegate = self
+    }
+    
+    private func setupUI(){
+        self.view.backgroundColor = .white
+        title = "Episodes"
         self.view.addSubview(episodeListView)
+    }
+    
+    private func setupHierarchy(){
+        
         NSLayoutConstraint.activate([
             episodeListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             episodeListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
@@ -45,7 +57,6 @@ class EpisodesViewController: UIViewController {
             episodeListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-    
 }
 
 extension EpisodesViewController: EpisodeListViewDelegate {

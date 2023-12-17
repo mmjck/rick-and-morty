@@ -47,14 +47,7 @@ final class LocationViewViewModel {
         return self.locations[index]
     }
     
-    
-    
-    
-    
-    
-    
     init(){}
-    
     
     public func registerDidFinishPagination(_ block: @escaping () -> Void){
         self.didFinishPagination = block

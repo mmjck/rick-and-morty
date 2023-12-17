@@ -25,7 +25,7 @@ final class FooterLoadingCollectionReusableView: UICollectionReusableView {
         backgroundColor = .systemBackground
         
         setupUI()
-        addConstraints()
+        setHierarchy()
     }
     
     required init?(coder: NSCoder) {
@@ -36,7 +36,7 @@ final class FooterLoadingCollectionReusableView: UICollectionReusableView {
         self.addSubview(spinner)
     }
     
-    private  func addConstraints() {
+    private func setHierarchy() {
         NSLayoutConstraint.activate([
             spinner.widthAnchor.constraint(equalToConstant: 100),
             spinner.heightAnchor.constraint(equalToConstant: 100),
