@@ -25,8 +25,8 @@ final class LocationViewViewModel {
     private var apiInfo: Info?
     private var locations: [Location] = [] {
         didSet {
-            for locatio in locations {
-                let cellViewModel = LocationTableViewCellViewModel(location: locatio)
+            for location in locations {
+                let cellViewModel = LocationTableViewCellViewModel(location: location)
                 
                 if !cellViewModels.contains(cellViewModel) {
                     cellViewModels.append(cellViewModel)
@@ -70,6 +70,7 @@ extension LocationViewViewModel: LocationViewViewModelDelegate {
             switch result {
             case .success(let response):
                 self?.apiInfo = response.info
+                print(response.results)
                 self?.locations = response.results
                 
                 DispatchQueue.main.async {

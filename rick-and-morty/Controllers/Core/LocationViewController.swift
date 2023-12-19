@@ -8,20 +8,20 @@
 import Foundation
 import UIKit
 
-final class  LocationViewController: ViewController,
-                                     LocationViewViewModelDelegate,LocationViewDelegate {
+final class  LocationViewController: ViewController
+{
     
     
-    // private let primaryView = LocationView()
+    private let primaryView = LocationView()
     
-    // private viewModel = LocationViewViewModel()
+    private var viewModel = LocationViewViewModel()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // primaryView.delegate = self
-        // self.view.addSubview(primaryView)
+        primaryView.delegate = self
+        self.view.addSubview(primaryView)
         self.view.backgroundColor = .white
         self.title = "Locations"
         
@@ -29,11 +29,19 @@ final class  LocationViewController: ViewController,
         self.addSearchButton()
         self.addConstraints()
         
+        viewModel.delegate = self
+        viewModel.didFetchInitialLocations()
+        
     }
-    
     
     private func addConstraints()
     {
+        NSLayoutConstraint.activate([
+            primaryView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            primaryView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            primaryView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            primaryView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
         
     }
     private func  addSearchButton(){
@@ -48,11 +56,21 @@ final class  LocationViewController: ViewController,
         //        navigationController?.pushViewController(vc, animated: true)
     }
     
+    
+    
+    
+}
+
+
+extension LocationViewController: LocationViewViewModelDelegate{
+    func didFetchInitialLocations() {
+        primaryView.configure(with: viewModel)
+    }
+}
+
+
+extension LocationViewController: LocationViewDelegate{
     func removeLocationView(_ locationView: LocationView, didSelect location: Location){
         
-    }
-    
-    func didFetchInitialLocations() {
-        // primaryView.configure
     }
 }

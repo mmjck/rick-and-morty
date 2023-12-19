@@ -66,6 +66,10 @@ final class LocationView: UIView
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    public func configure(with viewModel: LocationViewViewModel) {
+        self.viewModel = viewModel
+    }
 }
 
 extension LocationView {
@@ -102,6 +106,7 @@ extension LocationView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let locationModel = viewModel?.location(at: indexPath.row) else {
@@ -122,12 +127,11 @@ extension LocationView: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cellViewModels = viewModel?.cellViewModels  else {
+        guard let cellViewModels = viewModel?.cellViewModels else {
             fatalError()
         }
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationTableViewCell.identifier, for: indexPath) as? LocationTableViewCell
-        else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationTableViewCell.identifier, for: indexPath) as? LocationTableViewCell else {
             fatalError()
         }
         

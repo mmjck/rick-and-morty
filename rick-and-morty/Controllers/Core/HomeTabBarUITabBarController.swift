@@ -19,7 +19,7 @@ class HomeTabBarUITabBarController: UITabBarController {
     
     private func setupTabs(){
         let charactersVC = ViewController()
-        let locationsVC = ViewController()
+        let locationsVC = LocationViewController()
         let episodesVC = EpisodesViewController()
         let settingVC = SettingsViewController()
         

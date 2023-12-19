@@ -37,6 +37,7 @@ final class LocationTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
         addConstraints()
         
     }
@@ -48,6 +49,8 @@ final class LocationTableViewCell: UITableViewCell {
 
 extension LocationTableViewCell {
     private func setupUI(){
+        accessoryType = .disclosureIndicator
+
         self.contentView.addSubview(nameLabel)
         self.contentView.addSubview(typeLabel)
         self.contentView.addSubview(dimensionLabel)
@@ -75,16 +78,15 @@ extension LocationTableViewCell {
 
 extension LocationTableViewCell {
     override func prepareForReuse() {
-        nameLabel.text = nil
-        typeLabel.text = nil
-        dimensionLabel.text = nil
-        
+        for label in [nameLabel, typeLabel, dimensionLabel] {
+            label.text = nil
+        }
     }
     
-    public func configure(with viewMode: LocationTableViewCellViewModel){
-        nameLabel.text = viewMode.name
-        typeLabel.text = viewMode.type
-        dimensionLabel.text = viewMode.dimension
+    public func configure(with viewModel: LocationTableViewCellViewModel){
+        nameLabel.text = viewModel.name
+        typeLabel.text = viewModel.type
+        dimensionLabel.text = viewModel.dimension
         
     }
 }
