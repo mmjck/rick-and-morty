@@ -138,6 +138,9 @@ extension LocationView: UITableViewDataSource{
         
         
         cell.configure(with: cellViewModels[indexPath.row])
+        
+        print(cellViewModels[indexPath.row].name)
+        
         return cell
     }
     
