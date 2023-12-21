@@ -13,7 +13,7 @@ protocol LocationDetailViewViewModelDelegate: AnyObject {
 
 final class LocationDetailViewViewModel {
     private let endpointUrl: URL? = nil
-    public
+    
     private var dataTuple: (location: Location, characters: [Character])? {
         didSet {
             createCellViewModels()
@@ -47,7 +47,7 @@ final class LocationDetailViewViewModel {
         let location = dataTuple.location
         let characters = dataTuple.characters
         
-        var createString = location.created
+        var createdString = location.created
         if let date = CharacterInfoCollectionViewCellViewModel.dateFormatter.date(from: location.created) {
             createdString = CharacterInfoCollectionViewCellViewModel.shortDateFormatter.string(from: date)
         }
@@ -60,13 +60,70 @@ final class LocationDetailViewViewModel {
                 .init(title: "Created", value: createdString),
             ]),
             .characters(viewModel: characters.compactMap({ character in
-                return RMCharacterCollectionViewCellViewModel(
-                    characterName: character.name,
-                    characterStatus: character.status,
-                    characterImageUrl: URL(string: character.image)
+                return CharacterCollectionViewCellViewModel(
+                    name: character.name,
+                    status: character.status,
+                    imageUrl: URL(string: character.image)
                 )
             }))
         ]
         
     }
+    
+    
+    
+    public func fetchLocationData(){
+        guard let url = endpointUrl, let request = Request(url: url) else {  return }
+        
+        Service.shared.execute(request, expecting: Location) {
+            [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.fetchRelatedCharacters(location: response)
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
+    }
+    
+    private func fetchRelatedCharacters(location: Location) {
+        let requests: [Request] = location.residents.compactMap({
+            return URL(string: $0)
+        }).compactMap({
+            return Request(url: $0)
+        })
+        
+        
+        let group = DispatchGroup()
+        var characters: [Character] = []
+        
+        for request in requests {
+            group.enter()
+            
+            Service.shared.execute(request, expecting: Character.self){result  in
+                defer {
+                    group.leave()
+                }
+                
+                
+                switch result {
+                case .success(let model):
+                    characters.append(model)
+                case .failure():
+                    break
+                }
+                
+                
+                group.notify(queue: .main) {
+                    self.dataTuple = (
+                        location: location,
+                        characters: characters
+                    )
+                }
+            }
+            
+        }
+    }
+    
 }

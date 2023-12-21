@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class CharacterCollectionViewCellViewModel {
+final class CharacterCollectionViewCellViewModel: Hashable, Equatable  {
     public let name: String
     private let status: CharacterStatus
     private let imageUrl: URL?
@@ -26,12 +26,18 @@ final class CharacterCollectionViewCellViewModel {
     
     public func fetchImage(completion: @escaping (Result<Data, Error>) -> Void) {
         
+        guard let url = imageUrl else {
+            completion(.failure(URLError(.badURL)))
+            return
+        }
+        
+        ImageLoader.shared.downloadImage(url, completion: completion)
     }
     
     
-//    static func == (lhs: CharacterCollectionViewCellViewModel, rhs: CharacterCollectionViewCellViewModel) -> Bool {
-//        return lhs.name.hashValue == rhs.hashValue
-//    }
+    static func == (lhs: CharacterCollectionViewCellViewModel, rhs: CharacterCollectionViewCellViewModel) -> Bool {
+        return lhs.name.hashValue == rhs.hashValue
+    }
     
     
     func hash(into hasher: inout Hasher){
