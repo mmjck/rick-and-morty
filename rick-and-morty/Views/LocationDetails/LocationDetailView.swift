@@ -27,7 +27,7 @@ final class LocationDetailView: UIView{
             
         }
     }
-
+    
     
     private lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
@@ -36,13 +36,7 @@ final class LocationDetailView: UIView{
         return spinner
     }()
     
-    //    private lazy var collectionView: UICollectionView = {
-    //        let layout = UICollectionViewCompositionalLayout() {
-    //            section, _ in return self.layout(for)
-    //        }
-    //    }()
-    
-    override init(frame: CGRect) {
+ override init(frame: CGRect) {
         super.init(frame: frame)
         
         
@@ -69,6 +63,18 @@ final class LocationDetailView: UIView{
             section, _ in return self.layout(for: section)
         }
         
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: layout)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isHidden = true
+        collectionView.alpha = 0
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(EpisodeInfoCollectionViewCell.self, forCellWithReuseIdentifier: EpisodeInfoCollectionViewCell.identifier)
+        return collectionView
+        
     }
     
 }
@@ -78,9 +84,44 @@ extension LocationDetailView: LocationDetailViewDelegate {
         
     }
     
+}
+
+extension LocationDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let sections = viewModel?.cellViewModels else {
+            fatalError("No viewModel")
+        }
+        
+        let sectionType = sections[section]
+
+        
+        
+        switch sectionType {
+        case .information(let viewModel):
+            guard let cell = 
+        }
+    }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel?.cellViewModels.count ?? 0
+    }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let sections = viewModel?.cellViewModels else {
+            return 0
+        }
+        
+        let sectionType = sections[section]
+        
+        switch sectionType {
+        case .information(let viewModel):
+            return viewModel.count
+        case .characters(let viewModel):
+            return viewModel.count
+        }
     
+    }
     
 }
 

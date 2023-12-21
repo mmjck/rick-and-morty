@@ -12,7 +12,7 @@ protocol LocationDetailViewViewModelDelegate: AnyObject {
 }
 
 final class LocationDetailViewViewModel {
-    private let endpointUrl: URL? = nil
+    private var endpointUrl: URL? = nil
     
     private var dataTuple: (location: Location, characters: [Character])? {
         didSet {
@@ -75,7 +75,7 @@ final class LocationDetailViewViewModel {
     public func fetchLocationData(){
         guard let url = endpointUrl, let request = Request(url: url) else {  return }
         
-        Service.shared.execute(request, expecting: Location) {
+        Service.shared.execute(request, expecting: Location.self) {
             [weak self] result in
             switch result {
             case .success(let response):
@@ -100,29 +100,25 @@ final class LocationDetailViewViewModel {
         
         for request in requests {
             group.enter()
-            
-            Service.shared.execute(request, expecting: Character.self){result  in
+            Service.shared.execute(request, expecting: Character.self) {
+                result  in
                 defer {
                     group.leave()
                 }
-                
-                
                 switch result {
                 case .success(let model):
                     characters.append(model)
-                case .failure():
+                case .failure(let error):
+                    print(error)
                     break
                 }
-                
-                
-                group.notify(queue: .main) {
-                    self.dataTuple = (
-                        location: location,
-                        characters: characters
-                    )
-                }
             }
-            
+        }
+        group.notify(queue: .main) {
+            self.dataTuple = (
+                location: location,
+                characters: characters
+            )
         }
     }
     
