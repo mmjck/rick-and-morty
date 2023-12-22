@@ -46,6 +46,7 @@ final class LocationView: UIView
         table.register(LocationTableViewCell.self, forCellReuseIdentifier: LocationTableViewCell.identifier)
         return table
     }()
+    
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
         spinner.translatesAutoresizingMaskIntoConstraints = false
