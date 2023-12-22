@@ -45,12 +45,13 @@ final class  LocationViewController: ViewController
         
     }
     private func  addSearchButton(){
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearch))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
+
         
     }
     
     
-    @objc private func didTapSearch() {
+    @objc private func didTapShare() {
         //        let vc = RMSearchViewController(config: .init(type: .location))
         //        vc.navigationItem.largeTitleDisplayMode = .never
         //        navigationController?.pushViewController(vc, animated: true)
@@ -70,7 +71,10 @@ extension LocationViewController: LocationViewViewModelDelegate{
 
 
 extension LocationViewController: LocationViewDelegate{
-    func removeLocationView(_ locationView: LocationView, didSelect location: Location){
+    func didSelectLocation(_ locationView: LocationView, didSelect location: Location){
         
+        let vc = LocationDetailViewController(location: location)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

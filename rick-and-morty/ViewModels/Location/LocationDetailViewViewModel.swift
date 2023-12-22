@@ -41,6 +41,9 @@ final class LocationDetailViewViewModel {
         return dataTuple.characters[index]
     }
     
+    
+    
+    
     private func createCellViewModels() {
         guard let dataTuple = dataTuple else { return }
         

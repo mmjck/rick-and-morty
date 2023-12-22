@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol LocationViewDelegate: AnyObject {
-    func removeLocationView(_ location: LocationView, didSelect location: Location)
+    func didSelectLocation(_ location: LocationView, didSelect location: Location)
 }
 
 
@@ -112,7 +112,8 @@ extension LocationView: UITableViewDelegate {
         guard let locationModel = viewModel?.location(at: indexPath.row) else {
             return
         }
-        delegate?.removeLocationView(self, didSelect: locationModel)
+        print(indexPath)
+        delegate?.didSelectLocation(self, didSelect: locationModel)
         
     }
     
