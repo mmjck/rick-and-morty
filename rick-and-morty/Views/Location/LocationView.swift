@@ -108,11 +108,11 @@ extension LocationView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // tableView.deselectRow(at: indexPath, animated: true)
         guard let locationModel = viewModel?.location(at: indexPath.row) else {
             return
         }
-        print(indexPath)
         delegate?.didSelectLocation(self, didSelect: locationModel)
         
     }

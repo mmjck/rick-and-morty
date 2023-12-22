@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol LocationDetailViewDelegate: AnyObject {
-    func removeEpisodeDetailView(
+    func episodeDetailView(
         _ detailView: LocationDetailView,
         didSelect character: Character
     )
@@ -107,6 +107,8 @@ final class LocationDetailView: UIView{
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(EpisodeInfoCollectionViewCell.self, forCellWithReuseIdentifier: EpisodeInfoCollectionViewCell.identifier)
+        
+        collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
         return collectionView
         
     }
@@ -114,7 +116,7 @@ final class LocationDetailView: UIView{
 }
 
 extension LocationDetailView: LocationDetailViewDelegate {
-    func removeEpisodeDetailView(_ detailView: LocationDetailView, didSelect character: Character) {
+    func episodeDetailView(_ detailView: LocationDetailView, didSelect character: Character) {
         
     }
     
@@ -131,14 +133,15 @@ extension LocationDetailView: UICollectionViewDelegate, UICollectionViewDataSour
         
         switch sectionType {
         case .information(let viewModels):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EpisodeInfoCollectionViewCell.identifier, for: indexPath) as? EpisodeInfoCollectionViewCell  else { fatalError()
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EpisodeInfoCollectionViewCell.identifier, for: indexPath) as? EpisodeInfoCollectionViewCell  else {                 return UICollectionViewCell()
                 
             }
             cell.configure(with: viewModels[indexPath.row])
             return cell
         case .characters(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.identifier, for: indexPath) as? CharacterCollectionViewCell  else {
-                fatalError()
+                // fatalError()
+                return UICollectionViewCell()
             }
             
             cell.configure(with: viewModels[indexPath.row])

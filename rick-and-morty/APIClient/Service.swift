@@ -81,6 +81,7 @@ final class Service {
         }
         
         var currentRequest = URLRequest(url: url)
+        print(url)
         currentRequest.httpMethod = currentRequest.httpMethod
         return currentRequest
     }

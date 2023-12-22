@@ -9,9 +9,6 @@ import Foundation
 import UIKit
 
 final class LocationDetailViewController: UIViewController {
-    
-    
-    
     private let viewModel: LocationDetailViewViewModel
     private let detailView =  LocationDetailView()
     
@@ -79,7 +76,7 @@ extension LocationDetailViewController: LocationDetailViewViewModelDelegate, Loc
         detailView.configure(with: viewModel)
     }
     
-    func removeEpisodeDetailView(_ detailView: LocationDetailView, didSelect character: Character) {
+    func episodeDetailView(_ detailView: LocationDetailView, didSelect character: Character) {
 //        let vc = CharacterDetailViewController(viewModel: .init(character: character))
 //        vc.title = character.name
 //        vc.navigationItem.largeTitleDisplayMode = .never
