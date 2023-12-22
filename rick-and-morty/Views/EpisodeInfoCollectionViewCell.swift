@@ -72,7 +72,7 @@ final class EpisodeInfoCollectionViewCell: UICollectionViewCell{
     
     func configure(with viewModel: EpisodeInfoCollectionViewCellViewModel){
         titleLabel.text = viewModel.title
-        value.text = viewModel.value
+        valueLabel.text = viewModel.value
     }
     
 }

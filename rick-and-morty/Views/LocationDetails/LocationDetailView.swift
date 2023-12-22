@@ -19,12 +19,19 @@ protocol LocationDetailViewDelegate: AnyObject {
 final class LocationDetailView: UIView{
     
     
+    private var collectionView: UICollectionView?
     
     
     public weak var delegate: LocationDetailViewDelegate?
     private var viewModel: LocationDetailViewViewModel? {
         didSet {
+            spinner.stopAnimating()
+            self.collectionView?.reloadData()
+            self.collectionView?.isHidden = false
             
+            UIView.animate(withDuration: 0.3) {
+                self.collectionView?.alpha = 1
+            }
         }
     }
     
@@ -36,11 +43,10 @@ final class LocationDetailView: UIView{
         return spinner
     }()
     
- override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        
         setupUI()
+        setHierarchy()
         
     }
     
@@ -49,12 +55,36 @@ final class LocationDetailView: UIView{
     }
     
     
-    private func  setupUI(){
+    private func setHierarchy(){
+        guard let collectionView = collectionView else {
+            return
+        }
+        
+        NSLayoutConstraint.activate([
+            spinner.heightAnchor.constraint(equalToConstant: 100),
+            spinner.widthAnchor.constraint(equalToConstant: 100),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+    }
+    
+    private func setupUI(){
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemBackground
-        //        let collectionView = createColectionView()
-        //        addSubviews(collectionView, spinner)
-        //        self.collectionView = collectionView
+        let collectionView = createColectionView()
+        
+        self.addSubview(spinner)
+        self.addSubview(collectionView)
+        
+        self.collectionView = collectionView
+        
+        spinner.startAnimating()
     }
     
     
@@ -93,13 +123,23 @@ extension LocationDetailView: UICollectionViewDelegate, UICollectionViewDataSour
             fatalError("No viewModel")
         }
         
-        let sectionType = sections[section]
-
-        
+        let sectionType = sections[indexPath.section]
         
         switch sectionType {
-        case .information(let viewModel):
-            guard let cell = 
+        case .information(let viewModels):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EpisodeInfoCollectionViewCell.identifier, for: indexPath) as? EpisodeInfoCollectionViewCell  else { fatalError()
+                
+            }
+            cell.configure(with: viewModels[indexPath.row])
+            return cell
+        case .characters(let viewModels):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.identifier, for: indexPath) as? CharacterCollectionViewCell  else {
+                fatalError()
+            }
+            
+            cell.configure(with: viewModels[indexPath.row])
+            return cell
+            
         }
     }
     
@@ -120,7 +160,7 @@ extension LocationDetailView: UICollectionViewDelegate, UICollectionViewDataSour
         case .characters(let viewModel):
             return viewModel.count
         }
-    
+        
     }
     
 }
@@ -142,47 +182,43 @@ extension LocationDetailView {
     }
     
     func createInfoLayout() -> NSCollectionLayoutSection {
-        //
-        //        let item = NSCollectionLayoutItem(layoutSize: .init(
-        //            widthDimension: .fractionalWidth(1),
-        //            heightDimension: .fractionalHeight(1))
-        //        )
-        //
-        //        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-        //
-        //        let group = NSCollectionLayoutGroup.vertical(
-        //            layoutSize: .init(widthDimension: .fractionalWidth(1),
-        //                              heightDimension: .absolute(80)),
-        //            subitems: [item]
-        //        )
-        //
-        //        let section = NSCollectionLayoutSection(group: group)
-        //
-        //        return section
+        
+        
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        )
+        
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(80)), subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return section
     }
     //
     func createCharacterLayout() -> NSCollectionLayoutSection {
-        //        let item = NSCollectionLayoutItem(
-        //            layoutSize: NSCollectionLayoutSize(
-        //                widthDimension: .fractionalWidth(UIDevice.isiPhone ? 0.5 : 0.25),
-        //                heightDimension: .fractionalHeight(1.0)
-        //            )
-        //        )
-        //        item.contentInsets = NSDirectionalEdgeInsets(
-        //            top: 5,
-        //            leading: 10,
-        //            bottom: 5,
-        //            trailing: 10
-        //        )
-        //
-        //        let group = NSCollectionLayoutGroup.horizontal(
-        //            layoutSize:  NSCollectionLayoutSize(
-        //                widthDimension: .fractionalWidth(1.0),
-        //                heightDimension: .absolute(UIDevice.isiPhone ? 260 : 320)
-        //            ),
-        //            subitems: UIDevice.isiPhone ? [item, item] : [item, item, item, item]
-        //        )
-        //        let section = NSCollectionLayoutSection(group: group)
-        //        return section
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(UIDevice.isiPhone ? 0.5 : 0.25),
+                heightDimension: .fractionalHeight(1.0)
+            )
+        )
+        item.contentInsets = NSDirectionalEdgeInsets(
+            top: 5,
+            leading: 10,
+            bottom: 5,
+            trailing: 10
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize:  NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .absolute(UIDevice.isiPhone ? 260 : 320)
+            ),
+            subitems: UIDevice.isiPhone ? [item, item] : [item, item, item, item]
+        )
+        let section = NSCollectionLayoutSection(group: group)
+        return section
     }
 }
