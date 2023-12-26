@@ -19,9 +19,7 @@ protocol CharacterListViewDelegate: AnyObject {
 
 final class CharacterListView: UIView {
     public weak var delegate: CharacterListViewDelegate?
-    private let viewModel =  CharacterListViewViewModel()
-    
-    
+    private let viewModel = CharacterListViewViewModel()
     
     private lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
@@ -30,28 +28,30 @@ final class CharacterListView: UIView {
         return spinner
     }()
     
-    
     private lazy var collectionView: UICollectionView  = {
-       let layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
-
-
+        
+        
         let collectionView = UICollectionView()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isHidden = true
         collectionView.alpha = 0
         
-//        collectionView.register(RMCharacterCollectionViewCell.self,
-//                                forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
-//        collectionView.register(RMFooterLoadingCollectionReusableView.self,
-//                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-//                                withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier)
+        collectionView.register(CharacterCollectionViewCell.self,
+                                forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
+        collectionView.register(FooterLoadingCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: FooterLoadingCollectionReusableView.identifier)
         return collectionView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        setupUI()
+        setHierarchy()
     }
     
     required init?(coder: NSCoder) {
@@ -63,33 +63,36 @@ final class CharacterListView: UIView {
 }
 extension CharacterListView {
     private func setupUI(){
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .white
         
         addSubview(collectionView)
         addSubview(spinner)
-        
         spinner.startAnimating()
         viewModel.delegate = self
-        viewModel.
+        viewModel.fetchCharacters()
+        setUpCollectionView()
         
         
     }
-    private func configureTable(){
-     
+    
+    private func  setUpCollectionView(){
+        collectionView.dataSource = viewModel
+        collectionView.delegate = viewModel
     }
     
     private func setHierarchy() {
         NSLayoutConstraint.activate([
-            spinner.heightAnchor.constraint(equalToConstant: 100),
             spinner.widthAnchor.constraint(equalToConstant: 100),
+            spinner.heightAnchor.constraint(equalToConstant: 100),
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            tableView.topAnchor.constraint(equalTo: topAnchor),
-            tableView.leftAnchor.constraint(equalTo: leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }
@@ -98,7 +101,18 @@ extension CharacterListView {
 
 extension CharacterListView: CharacterListViewDelegate {
     func characterListView(_ characterListView: CharacterListView, didSelectCharacter character: Character) {
+        delegate?.characterListView(self, didSelectCharacter: character)
+    }
+    
+    func didLoadInitialCharacters(){
+        spinner.stopAnimating()
         
+        collectionView.isEditing = false
+        collectionView.reloadData()
+        
+        UIView.animate(withDuration: 0.4) {
+            self.collectionView.alpha = 1
+        }
     }
     
     
