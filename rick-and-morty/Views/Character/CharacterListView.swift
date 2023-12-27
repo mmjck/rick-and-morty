@@ -18,8 +18,10 @@ protocol CharacterListViewDelegate: AnyObject {
 
 
 final class CharacterListView: UIView {
+    
     public weak var delegate: CharacterListViewDelegate?
     private let viewModel = CharacterListViewViewModel()
+    
     
     private lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
@@ -34,11 +36,10 @@ final class CharacterListView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         
         
-        let collectionView = UICollectionView()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isHidden = true
         collectionView.alpha = 0
-        
         collectionView.register(CharacterCollectionViewCell.self,
                                 forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
         collectionView.register(FooterLoadingCollectionReusableView.self,
@@ -50,34 +51,34 @@ final class CharacterListView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        viewModel.delegate = self
+        
         setupUI()
+        setUpCollectionView()
         setHierarchy()
+        
+        
+        viewModel.fetchCharacters()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
 }
 extension CharacterListView {
     private func setupUI(){
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = .white
+        self.backgroundColor = .red
         
-        addSubview(collectionView)
         addSubview(spinner)
-        spinner.startAnimating()
-        viewModel.delegate = self
-        viewModel.fetchCharacters()
-        setUpCollectionView()
+        addSubview(collectionView)
         
+        spinner.startAnimating()
         
     }
     
-    private func  setUpCollectionView(){
+    private func setUpCollectionView(){
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
     }
@@ -99,7 +100,11 @@ extension CharacterListView {
 
 
 
-extension CharacterListView: CharacterListViewDelegate {
+extension CharacterListView: CharacterListViewViewModelDelegate {
+    func didSelectCharacter(_ character: Character) {
+        delegate?.characterListView(self, didSelectCharacter: character)
+    }
+    
     func characterListView(_ characterListView: CharacterListView, didSelectCharacter character: Character) {
         delegate?.characterListView(self, didSelectCharacter: character)
     }
@@ -116,4 +121,9 @@ extension CharacterListView: CharacterListViewDelegate {
     }
     
     
+    func didLoadMoreCharacters(with newIndexPaths: [IndexPath]) {
+        collectionView.performBatchUpdates {
+            self.collectionView.insertItems(at: newIndexPaths)
+        }
+    }
 }

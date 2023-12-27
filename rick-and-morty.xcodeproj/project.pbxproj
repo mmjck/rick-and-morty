@@ -56,6 +56,7 @@
 		0DD42CC12B34D8AE00333DC7 /* EpisodeInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CC02B34D8AE00333DC7 /* EpisodeInfoCollectionViewCell.swift */; };
 		0DD42CC42B35D5CA00333DC7 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CC32B35D5CA00333DC7 /* LocationDetailViewController.swift */; };
 		0DD42CC62B362E9000333DC7 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CC52B362E9000333DC7 /* CharacterListView.swift */; };
+		0DD42CC92B3B5FD100333DC7 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CC82B3B5FD100333DC7 /* CharacterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		0DD42CC02B34D8AE00333DC7 /* EpisodeInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		0DD42CC32B35D5CA00333DC7 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		0DD42CC52B362E9000333DC7 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
+		0DD42CC82B3B5FD100333DC7 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				0DD42C7D2B1BBFC700333DC7 /* EpisodeViewController.swift */,
 				0DD42C992B2785AC00333DC7 /* SettingsViewController.swift */,
 				0DD42CA52B2958D200333DC7 /* LocationViewController.swift */,
+				0DD42CC82B3B5FD100333DC7 /* CharacterViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				0DD42C5E2B19908D00333DC7 /* Endpoints.swift in Sources */,
 				0DD42C8F2B1D151300333DC7 /* CharacterCollectionViewCellViewModel.swift in Sources */,
 				0DD42CB02B2DD8A900333DC7 /* LocationTableViewCell.swift in Sources */,
+				0DD42CC92B3B5FD100333DC7 /* CharacterViewController.swift in Sources */,
 				0DD42CC42B35D5CA00333DC7 /* LocationDetailViewController.swift in Sources */,
 				0DD42C472B198E2200333DC7 /* SceneDelegate.swift in Sources */,
 				0DD42CAE2B2DD43C00333DC7 /* LocationTableViewCellViewModel.swift in Sources */,

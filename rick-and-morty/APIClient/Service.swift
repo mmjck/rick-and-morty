@@ -7,17 +7,12 @@
 
 import Foundation
 
-
 final class Service {
     static let shared = Service()
-    
-    
+
     private let cacheManager = APICacheManager()
     
-    private init() {
-        
-    }
-    
+    private init() { }
     
     enum ServiceError: Error {
         case failedToCreateRequest
@@ -58,11 +53,8 @@ final class Service {
                 completion(.failure(error ?? ServiceError.failedToGetData))
                 return
             }
-            
-            
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
-
                 completion(.success(result))
             }catch {
                 completion(.failure(error))
@@ -81,7 +73,6 @@ final class Service {
         }
         
         var currentRequest = URLRequest(url: url)
-        print(url)
         currentRequest.httpMethod = currentRequest.httpMethod
         return currentRequest
     }

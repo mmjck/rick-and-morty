@@ -53,10 +53,11 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
     
     
     private func setupUI(){
-        self.contentView.backgroundColor = .secondarySystemBackground
-        self.contentView.addSubview(imageView)
-        self.contentView.addSubview(nameLabel)
-        self.contentView.addSubview(statusLabel)
+        self.contentView.backgroundColor = .red
+        for v in [imageView, nameLabel, statusLabel] {
+            self.contentView.addSubview(v)
+        }
+        
     }
     
     private func setHierarchy(){

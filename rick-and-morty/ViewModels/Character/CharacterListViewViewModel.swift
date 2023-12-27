@@ -15,7 +15,7 @@ protocol CharacterListViewViewModelDelegate: AnyObject {
     func didSelectCharacter(_ character: Character)
 }
 
-final class CharacterListViewViewModel {
+final class CharacterListViewViewModel: NSObject {
     public weak var delegate: CharacterListViewViewModelDelegate?
     private var isLoadingMoreCharacters = false
     
@@ -35,10 +35,12 @@ final class CharacterListViewViewModel {
     
     
     private var cellViewModels: [CharacterCollectionViewCellViewModel] = []
-    private var apiInfo: GetAllCharactersResponse.Info
     
-    public shouldShowLoadMoreIndicator() -> Bool {
-        return apiInfo.next != nil
+    
+    private var apiInfo: GetAllCharactersResponse.Info? = nil
+    
+    public func shouldShowLoadMoreIndicator() -> Bool {
+        return apiInfo?.next != nil
     }
     
     public func fetchCharacters(){
@@ -48,13 +50,14 @@ final class CharacterListViewViewModel {
             switch result {
             case .success(let response):
                 
-                self?.characters = response.result
+                self?.characters = response.results
                 self?.apiInfo = response.info
-                
+
                 DispatchQueue.main.async {
                     self?.delegate?.didLoadInitialCharacters()
                 }
-            case .failure(let error)
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -69,7 +72,7 @@ extension CharacterListViewViewModel: UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.identifier, for: indexPath) as? CharacterCollectionViewCell else {
-            UICollectionViewCell()
+            return UICollectionViewCell()
         }
         
         cell.configure(with: cellViewModels[indexPath.row])
@@ -88,6 +91,7 @@ extension CharacterListViewViewModel: UICollectionViewDataSource, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
         guard shouldShowLoadMoreIndicator() else {
             return .zero
         }
@@ -97,12 +101,15 @@ extension CharacterListViewViewModel: UICollectionViewDataSource, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let bounds = collectionView.bounds
         
         let width = (bounds.width - 30) / 2
         return CGSize(width: width, height: width * 2)
         
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let character = characters[indexPath.row]
         
