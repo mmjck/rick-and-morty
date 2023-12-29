@@ -34,6 +34,7 @@ final class CharacterDetailView: UIView {
         
         
         configureView()
+        
         let collectionView = createCollectionView()
         self.collectionView = collectionView
         setHierarchy()
@@ -50,13 +51,15 @@ extension CharacterDetailView {
     private func configureView(){
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
+        self.addSubview(spinner)
+        
     }
     
     private func setHierarchy() {
         guard let collectionView = collectionView else {
             return
         }
-        
+        self.addSubview(collectionView)
         NSLayoutConstraint.activate([
             spinner.widthAnchor.constraint(equalToConstant: 100),
             spinner.heightAnchor.constraint(equalToConstant: 100),
@@ -89,13 +92,14 @@ extension CharacterDetailView {
             return self.createSection(for: sectionIndex)
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CharacterPhotoCollectionViewCell.self,
                                 forCellWithReuseIdentifier: CharacterPhotoCollectionViewCell.identifier)
         collectionView.register(CharacterInfoCollectionViewCell.self,
                                 forCellWithReuseIdentifier: CharacterInfoCollectionViewCell.identifier)
         collectionView.register(CharacterEpisodeCollectionViewCell.self,
                                 forCellWithReuseIdentifier: CharacterEpisodeCollectionViewCell.identifier)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         return collectionView
     }
 }

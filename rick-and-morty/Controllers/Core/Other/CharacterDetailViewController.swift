@@ -88,29 +88,29 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
         let sectionType = viewModel.sections[indexPath.section]
         
         switch sectionType {
-        case .photo(let model):
+        case .photo(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterPhotoCollectionViewCell.identifier, for: indexPath) as?
                     CharacterPhotoCollectionViewCell else {
                 fatalError()
             }
             
-            cell.configure(with: model)
+            cell.configure(with: viewModel)
             return cell
-        case .information(let model):
+        case .information(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterInfoCollectionViewCell.identifier, for: indexPath) as?
                     CharacterInfoCollectionViewCell else {
                 fatalError()
             }
             
-            cell.configure(with: model)
+            cell.configure(with: viewModels[indexPath.row])
             return cell
-        case .episodes(let model):
+        case .episodes(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterEpisodeCollectionViewCell.identifier, for: indexPath) as?
                     CharacterEpisodeCollectionViewCell else {
                 fatalError()
             }
             
-            cell.configure(with: model)
+            cell.configure(with: viewModels[indexPath.row])
             return cell
         }
         

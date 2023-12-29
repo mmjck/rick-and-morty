@@ -80,10 +80,10 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
         statusLabel.text = nil
     }
     
-    func configure(with vM: CharacterCollectionViewCellViewModel){
-        nameLabel.text = vM.name
-        nameLabel.text = vM.statusText
-        vM.fetchImage {
+    func configure(with viewModel: CharacterCollectionViewCellViewModel){
+        nameLabel.text = viewModel.name
+        nameLabel.text = viewModel.statusText
+        viewModel.fetchImage {
             [weak self] result in
             switch result {
             case .success(let data):
