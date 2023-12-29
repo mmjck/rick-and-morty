@@ -11,7 +11,6 @@ import UIKit
 final class CharacterCollectionViewCell: UICollectionViewCell {
     static let identifier = "CharacterCollectionViewCell"
     
-    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -29,8 +28,6 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    
-    
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
@@ -38,8 +35,6 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,13 +46,10 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func setupUI(){
-        self.contentView.backgroundColor = .red
         for v in [imageView, nameLabel, statusLabel] {
             self.contentView.addSubview(v)
         }
-        
     }
     
     private func setHierarchy(){
@@ -88,16 +80,10 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
         statusLabel.text = nil
     }
     
-    
-    
-    
-    
-    func configure(with viewModel: CharacterCollectionViewCellViewModel){
-        
-        
-        nameLabel.text = viewModel.name
-        nameLabel.text = viewModel.statusText
-        viewModel.fetchImage {
+    func configure(with vM: CharacterCollectionViewCellViewModel){
+        nameLabel.text = vM.name
+        nameLabel.text = vM.statusText
+        vM.fetchImage {
             [weak self] result in
             switch result {
             case .success(let data):

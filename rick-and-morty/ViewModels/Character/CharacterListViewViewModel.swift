@@ -112,9 +112,7 @@ extension CharacterListViewViewModel: UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let character = characters[indexPath.row]
-        
         delegate?.didSelectCharacter(character)
-        
     }
     
 }

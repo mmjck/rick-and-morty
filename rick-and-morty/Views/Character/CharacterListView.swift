@@ -22,7 +22,6 @@ final class CharacterListView: UIView {
     public weak var delegate: CharacterListViewDelegate?
     private let viewModel = CharacterListViewViewModel()
     
-    
     private lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
         spinner.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +56,8 @@ final class CharacterListView: UIView {
         setUpCollectionView()
         setHierarchy()
         
-        
+        spinner.startAnimating()
+
         viewModel.fetchCharacters()
     }
     
@@ -73,8 +73,6 @@ extension CharacterListView {
         
         addSubview(spinner)
         addSubview(collectionView)
-        
-        spinner.startAnimating()
         
     }
     
@@ -116,8 +114,10 @@ extension CharacterListView: CharacterListViewViewModelDelegate {
         collectionView.reloadData()
         
         UIView.animate(withDuration: 0.4) {
+            self.collectionView.isHidden = false
             self.collectionView.alpha = 1
         }
+        
     }
     
     

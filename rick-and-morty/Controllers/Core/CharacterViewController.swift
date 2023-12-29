@@ -21,7 +21,6 @@ final class CharacterViewController: UIViewController {
     }
     
     public func addSearchButton(){
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearch))
     }
     
@@ -44,8 +43,10 @@ final class CharacterViewController: UIViewController {
 
 extension CharacterViewController : CharacterListViewDelegate {
     func characterListView(_ characterListView: CharacterListView, didSelectCharacter character: Character) {
-        
+     
+        let viewModel = CharacterDetailViewViewModel(character: character)
+        let detailVC = CharacterDetailViewController(viewModel: viewModel)
+        detailVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(detailVC, animated: true)
     }
-    
-    
 }
