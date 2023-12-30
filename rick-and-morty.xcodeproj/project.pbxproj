@@ -63,6 +63,9 @@
 		0DD42CD12B3CE4B700333DC7 /* CharacterPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CD02B3CE4B700333DC7 /* CharacterPhotoCollectionViewCell.swift */; };
 		0DD42CD32B3CE5A400333DC7 /* CharacterPhotoCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CD22B3CE5A400333DC7 /* CharacterPhotoCollectionViewCellViewModel.swift */; };
 		0DD42CD62B3DFAEF00333DC7 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CD52B3DFAEF00333DC7 /* CharacterDetailViewController.swift */; };
+		0DD42CD92B40718F00333DC7 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CD82B40718F00333DC7 /* SearchView.swift */; };
+		0DD42CDB2B40AC8400333DC7 /* NoSearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CDA2B40AC8400333DC7 /* NoSearchResultsView.swift */; };
+		0DD42CDE2B40AFE200333DC7 /* NoSearchResultsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD42CDD2B40AFE200333DC7 /* NoSearchResultsViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +127,9 @@
 		0DD42CD02B3CE4B700333DC7 /* CharacterPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		0DD42CD22B3CE5A400333DC7 /* CharacterPhotoCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPhotoCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		0DD42CD52B3DFAEF00333DC7 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
+		0DD42CD82B40718F00333DC7 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		0DD42CDA2B40AC8400333DC7 /* NoSearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSearchResultsView.swift; sourceTree = "<group>"; };
+		0DD42CDD2B40AFE200333DC7 /* NoSearchResultsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSearchResultsViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,7 @@
 		0DD42C5B2B19906900333DC7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42CDC2B40AFDB00333DC7 /* Search */,
 				0DD42CC72B3B4F1600333DC7 /* Character */,
 				0DD42CB92B32984500333DC7 /* EpisodeDetail */,
 				0DD42CAA2B2DD39500333DC7 /* Location */,
@@ -215,6 +222,7 @@
 		0DD42C5C2B19906E00333DC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0DD42CD72B40718400333DC7 /* Search */,
 				0DD42CB42B31C25300333DC7 /* LocationDetails */,
 				0DD42CA72B29E56200333DC7 /* Location */,
 				0DD42C9D2B2788BF00333DC7 /* SwiftUI */,
@@ -401,6 +409,23 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		0DD42CD72B40718400333DC7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0DD42CD82B40718F00333DC7 /* SearchView.swift */,
+				0DD42CDA2B40AC8400333DC7 /* NoSearchResultsView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		0DD42CDC2B40AFDB00333DC7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0DD42CDD2B40AFE200333DC7 /* NoSearchResultsViewViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -475,6 +500,7 @@
 				0DD42C492B198E2200333DC7 /* ViewController.swift in Sources */,
 				0DD42CAC2B2DD3B000333DC7 /* LocationViewViewModel.swift in Sources */,
 				0DD42C912B216E8300333DC7 /* Request.swift in Sources */,
+				0DD42CDE2B40AFE200333DC7 /* NoSearchResultsViewViewModel.swift in Sources */,
 				0DD42C792B1BBDAD00333DC7 /* Info.swift in Sources */,
 				0DD42C772B1BBD6E00333DC7 /* GetLocationResponse.swift in Sources */,
 				0DD42C8B2B1D049E00333DC7 /* FooterLoadingCollectionReusableView.swift in Sources */,
@@ -515,6 +541,7 @@
 				0DD42CC62B362E9000333DC7 /* CharacterListView.swift in Sources */,
 				0DD42C6D2B1BAE6900333DC7 /* CharacterGender.swift in Sources */,
 				0DD42C652B1BA9D700333DC7 /* GetAllCharactersResponse.swift in Sources */,
+				0DD42CDB2B40AC8400333DC7 /* NoSearchResultsView.swift in Sources */,
 				0DD42C7C2B1BBEE300333DC7 /* Extensions.swift in Sources */,
 				0DD42CBB2B32985F00333DC7 /* CharacterInfoCollectionViewCellViewModel.swift in Sources */,
 				0DD42C832B1BF32500333DC7 /* EpisodeListViewViewModel.swift in Sources */,
@@ -522,6 +549,7 @@
 				0DD42CCB2B3CD93600333DC7 /* CharacterDetailView.swift in Sources */,
 				0DD42C9C2B2788BA00333DC7 /* SettingsView.swift in Sources */,
 				0DD42CA42B27892000333DC7 /* SettingsViewViewModel.swift in Sources */,
+				0DD42CD92B40718F00333DC7 /* SearchView.swift in Sources */,
 				0DD42C732B1BAFBC00333DC7 /* SingleLocation.swift in Sources */,
 				0DD42CBD2B34A4A800333DC7 /* EpisodeInfoCollectionViewCellViewModel.swift in Sources */,
 				0DD42CD12B3CE4B700333DC7 /* CharacterPhotoCollectionViewCell.swift in Sources */,
