@@ -29,6 +29,7 @@ final class CharacterDetailViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setHierarchy()
+        setupButton()
     }
 }
 
@@ -37,6 +38,8 @@ extension CharacterDetailViewController {
         self.view.backgroundColor = .white
         title = viewModel.title
         view.addSubview(detailView)
+        detailView.collectionView?.delegate = self
+        detailView.collectionView?.dataSource = self
     }
     
     private func setupButton(){

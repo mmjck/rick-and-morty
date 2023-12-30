@@ -26,11 +26,8 @@ final class CharacterDetailViewViewModel {
     
     public var sections: [SectionType] = [ ]
     
-    
     init(character: Character) {
         self.character = character
-        
-        
         setupSections()
     }
     
@@ -83,7 +80,7 @@ extension CharacterDetailViewViewModel {
     public func createInfoSectionLayout() -> NSCollectionLayoutSection{
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(UIDevice.isiPhone ? 0.5 : 0.25),
+                widthDimension: .fractionalWidth(0.5),
                 heightDimension: .fractionalHeight(1.0)
             )
         )
@@ -99,7 +96,7 @@ extension CharacterDetailViewViewModel {
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: .absolute(150)
             ),
-            subitems: UIDevice.isiPhone ? [item, item] : [item, item, item, item]
+            subitems: [item, item]
         )
         let section = NSCollectionLayoutSection(group: group)
         return section
@@ -121,7 +118,7 @@ extension CharacterDetailViewViewModel {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize:  NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(UIDevice.isiPhone ? 0.8 : 0.4),
+                widthDimension: .fractionalWidth( 0.8 ),
                 heightDimension: .absolute(150)
             ),
             subitems: [item]

@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-
-
 protocol EpisodeListViewDelegate: AnyObject {
     func removeEpisodeListView(_ characterListView: EpisodeListView, didSelectEpisode episode: Episode)
 }
@@ -21,7 +19,7 @@ final class EpisodeListView: UIView {
     private let viewModel = EpisodeListViewViewModel()
     
     
-    private let spinner:  UIActivityIndicatorView = {
+    private lazy var spinner:  UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
@@ -29,10 +27,11 @@ final class EpisodeListView: UIView {
     }()
     
     
-    private let collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection  = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
@@ -90,8 +89,8 @@ extension EpisodeListView {
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor , constant: 20),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor, constant: -20),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
@@ -116,6 +115,4 @@ extension EpisodeListView : EpisodeListViewViewModelDelegate {
     func didSelectEpisode(_ episode: Episode) {
         delegate?.removeEpisodeListView(self, didSelectEpisode: episode)
     }
-    
-    
 }

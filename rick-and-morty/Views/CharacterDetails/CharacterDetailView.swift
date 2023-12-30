@@ -12,14 +12,6 @@ import UIKit
 final class CharacterDetailView: UIView {
     
     private let viewModel: CharacterDetailViewViewModel
-    
-    private lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView()
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.hidesWhenStopped = true
-        return spinner
-    }()
-    
     public var collectionView: UICollectionView?
     
     
@@ -51,8 +43,6 @@ extension CharacterDetailView {
     private func configureView(){
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
-        self.addSubview(spinner)
-        
     }
     
     private func setHierarchy() {
@@ -61,11 +51,6 @@ extension CharacterDetailView {
         }
         self.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 100),
-            spinner.heightAnchor.constraint(equalToConstant: 100),
-            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leftAnchor.constraint(equalTo: leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: rightAnchor),

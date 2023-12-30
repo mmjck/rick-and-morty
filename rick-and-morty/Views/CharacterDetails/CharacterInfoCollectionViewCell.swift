@@ -32,7 +32,6 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
     
     private lazy var iconImageView: UIImageView = {
         let icon = UIImageView()
-        
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.contentMode = .scaleAspectFit
         return icon
@@ -41,7 +40,6 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
     
     private lazy var titleContainerView: UIView = {
         let view = UIImageView()
-        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .secondarySystemBackground
         return view
@@ -51,6 +49,7 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setHierarchy()
     }
     
     required init?(coder: NSCoder) {
@@ -87,4 +86,32 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
         iconImageView.tintColor = viewModel.tintColor
         titleLabel.textColor = viewModel.tintColor
     }
+}
+
+
+extension CharacterInfoCollectionViewCell {
+    private func setHierarchy() {
+        NSLayoutConstraint.activate([
+            titleContainerView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            titleContainerView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            titleContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            titleContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.33),
+
+            titleLabel.leftAnchor.constraint(equalTo: titleContainerView.leftAnchor),
+            titleLabel.rightAnchor.constraint(equalTo: titleContainerView.rightAnchor),
+            titleLabel.topAnchor.constraint(equalTo: titleContainerView.topAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: titleContainerView.bottomAnchor),
+
+            iconImageView.heightAnchor.constraint(equalToConstant: 30),
+            iconImageView.widthAnchor.constraint(equalToConstant: 30),
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35),
+            iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+
+            valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
+            valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            valueLabel.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor)
+        ])
+    }
+
 }
